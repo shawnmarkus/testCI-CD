@@ -6,8 +6,13 @@ on:
     branches:
       - staging
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   deploy-staging:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     environment: staging
     steps:
@@ -16,3 +21,13 @@ jobs:
 
       - name: Print Environment
         run: echo "hello world with env name as staging"
+
+      - name: Create PR to main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base main \
+            --head "${{ github.event.pull_request.head.ref }}" \
+            --title "Merge ${{ github.event.pull_request.head.ref }} to main" \
+            --body "Automated PR: Merging `${{ github.event.pull_request.head.ref }}` into `main` after it was merged to `staging`."
