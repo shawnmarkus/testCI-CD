@@ -1,0 +1,17 @@
+name: Build and Deploy Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Print Environment
+        run: echo "hello world with env name as production"

@@ -1,0 +1,17 @@
+name: Build and Deploy Staging
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Print Environment
+        run: echo "hello world with env name as staging"
