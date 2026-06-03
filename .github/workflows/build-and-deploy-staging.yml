@@ -1,7 +1,8 @@
 name: Build and Deploy Staging
 
 on:
-  push:
+  pull_request:
+    types: ["closed"]
     branches:
       - staging
 
@@ -12,6 +13,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Print Environment
         run: echo "hello world with env name as staging"
