@@ -30,4 +30,4 @@ jobs:
             --base main \
             --head "${{ github.event.pull_request.head.ref }}" \
             --title "Merge ${{ github.event.pull_request.head.ref }} to main" \
-            --body "Automated PR: Merging `${{ github.event.pull_request.head.ref }}` into `main` after it was merged to `staging`."
+            --body "Automated PR: Merging '${{ github.event.pull_request.head.ref }}' into 'main' after it was merged to 'staging'."
